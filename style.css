@@ -1,0 +1,320 @@
+main {
+    border: red solid;
+}
+
+section {
+    padding: 0 1rem;
+    margin: 0 auto;
+    /*centers all sections aka blocks without centering elements inside*/
+    border: orange solid;
+}
+
+/* max-width only on big screens */
+@media screen and (min-width: 1200px) {
+    section {
+        max-width: 70rem;
+    }
+}
+
+/* prevents images from breaking side*/
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+div {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+label {
+    margin: 0;
+}
+
+h1 {
+    color: #E77E3D;
+    font-family: "Playfair Display";
+    text-align: center;
+    font-size: clamp(1rem, 0.2rem + 10vw, 5rem);
+}
+
+h2 {
+    color: white;
+    font-family: "Playfair Display";
+    font-size: clamp(0.5rem, 0.1rem + 10vw, 3rem);
+    text-align: center;
+}
+
+h3 {
+    font-family: "Playfair Display";
+    font-weight: 300;
+    font-size: clamp(0.5rem, 0.1rem + 10vw, 1.5rem);
+    text-align: center;
+}
+
+h4 {
+    font-family: "Playfair Display";
+    font-weight: 600;
+    font-size: clamp(0.5rem, 0.1rem + 10vw, 1.5rem);
+    text-align: center;
+}
+
+p,
+label {
+    color: #022A3E;
+    font-family: "Raleway";
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.card p {
+    color: white;
+    font-weight: 300;
+}
+
+/************************************************* STYLING *************************************************/
+
+.bg-dark {
+    background-color: #022A3E;
+}
+
+img.big {
+    width: clamp(10rem, 90%, 45em);
+    margin: 2em auto;
+    display: block;
+}
+
+img.small {
+    width: clamp(10rem, 10%, 20em);
+    margin: 1em auto;
+    display: block
+}
+
+/* img.medium {
+    width: clamp(10rem, 10%, 20em);
+    display: inline-block;
+    border: white solid;
+} */
+
+.white {
+    color: white;
+    text-align: center;
+}
+
+.button {
+    font-family: "raleway";
+    font-size: clamp(1rem, 0.2rem + 2vw, 1.2rem);
+    padding: 1.5rem 4rem;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 3rem;
+    display: block;
+    margin: auto;
+    border: 0px;
+    box-shadow: 0px 0px 14px -7px #f09819;
+    background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%);
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.button:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+
+/************************************************* HEADER *************************************************/
+.logo {
+    width: clamp(4rem, 25%, 8rem);
+    float: left;
+    margin-left: 1rem;
+}
+
+.head-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 5%;
+}
+
+.head-item a {
+    color: #022A3E;
+    font-family: "Raleway";
+    text-decoration: none;
+    /* text-transform: uppercase; */
+    font-size: clamp(0.7rem, 0.2rem + 2vw, 1.2rem);
+}
+
+.head-item a:hover {
+    color: #E77E3D;
+}
+
+/* animation on top of header item */
+.head-item a:before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: #E77E3D;
+    top: 0;
+    width: 0%;
+    transition: all ease-in-out 400ms;
+}
+
+.head-item a:hover::before {
+    width: 100%;
+}
+
+
+/************************************************* MAIN *************************************************/
+
+.grid {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-bottom: 5em;
+}
+
+/* .grid-big{
+    display: 
+} */
+
+.box {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.card {
+    background-color: #022A3E;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    gap: 1rem;
+    border-radius: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+/* @media (min-width: 576px){
+    .card{
+        
+    }
+}
+
+/* test */
+@media (min-width: 993px){
+    .card{
+
+    }
+} */
+
+
+.card-item {
+    height: 10rem;
+    margin: auto;
+    border: rgb(162, 0, 255) dotted 1px;
+    text-align: center;
+}
+
+
+@media (min-width: 576px) {
+    .card-item {
+        width: 20rem;
+        margin: auto;
+        border: rgb(200, 30, 174) dotted 1px;
+    }
+}
+
+@media (min-width: 993px) {
+    .card-item {
+        width: 13rem;
+        margin: auto;
+        border: red dotted 1px;
+    }
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 576px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 576px) {
+    .container {
+        flex-direction: row;
+    }
+}
+
+/************************************************* TABLE *************************************************/
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 75%;
+}
+
+
+table img {
+    height: 7em;
+    padding-bottom: 0.7em;
+}
+
+th {
+    font-size: clamp(0.5rem, 0.1rem + 10vw, 1.5rem);
+    text-align: center;
+    padding: 1.25em;
+    font-family: "Playfair Display";
+}
+
+td {
+    font-size: 1.25em;
+    padding: 1.25em;
+    font-family: "Raleway";
+    text-align: center;
+}
+
+td:nth-child(2) {
+    text-align: left;
+}
+
+td:nth-child(3) {
+    text-align: right;
+}
