@@ -1,17 +1,10 @@
-main {
-    border: red solid;
-}
-
-/* test */
-
+/*centers all sections aka blocks without centering elements inside*/
 section {
     padding: 0 1rem;
     margin: 0 auto;
-    /*centers all sections aka blocks without centering elements inside*/
-    border: orange solid;
 }
 
-/* max-width only on big screens */
+/* max-width for big screens to prevent having a very stretched page*/
 @media screen and (min-width: 1200px) {
     section {
         max-width: 70rem;
@@ -24,10 +17,14 @@ img {
     max-height: 100%;
 }
 
-div {
+/* every element has a nice padding but not the flexbox cards */
+div:not(.card-item) {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+
+
+/************************************************* FONTS *************************************************/
 
 body,
 h1,
@@ -68,9 +65,17 @@ h4 {
 }
 
 p,
-label {
+label,
+input,
+footer,
+li {
     color: #022A3E;
     font-family: "Raleway";
+}
+
+p,
+label,
+input {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -83,15 +88,29 @@ h4 {
     margin-bottom: 2rem;
 }
 
-.card p {
-    color: white;
-    font-weight: 300;
+a{
+    text-decoration: none;
 }
 
-/************************************************* STYLING *************************************************/
+ol > li {
+    font-family: "Playfair Display";
+    font-weight: 600;
+}
+
+/************************************************* ADDITIONAL STYLING *************************************************/
 
 .bg-dark {
     background-color: #022A3E;
+}
+
+.bg-img {
+    background-image: url("img/pexels-welcome-blur.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.extra-space {
+    margin: 5em 0;
 }
 
 img.big {
@@ -106,23 +125,21 @@ img.small {
     display: block
 }
 
-/* img.medium {
-    width: clamp(10rem, 10%, 20em);
-    display: inline-block;
-    border: white solid;
-} */
-
 .white {
     color: white;
     text-align: center;
 }
+
+.orange{
+    color:#E77E3D;
+}
+/************************************************* ELEMENTS *************************************************/
 
 .button {
     font-family: "raleway";
     font-size: clamp(1rem, 0.2rem + 2vw, 1.2rem);
     padding: 1.5rem 4rem;
     text-align: center;
-    text-decoration: none;
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
@@ -147,12 +164,90 @@ img.small {
     transform: scale(0.95);
 }
 
+input[type=text],
+input[type=datetime-local] {
+    padding: 1em;
+    border-radius: 0.5em;
+    background: #fbfbfb;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 1px #dddddd, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+    width: 90%;
+    /* set to 90% because 100% is overflowing grid. Why?! */
+}
 
-/************************************************* HEADER *************************************************/
+input[type=text]:focus {
+    /* border: 2px solid #f09819; still showing black in result. Why? */
+    border: #F09819 solid 2px;
+    border-radius: 4px;
+}
+
+input[type=checkbox] {
+    appearance: none;
+    background-color: #dfe1e4;
+    border-radius: 72px;
+    border-style: none;
+    flex-shrink: 0;
+    height: 20px;
+    margin: 0;
+    position: relative;
+    width: 40px;
+}
+
+
+/* ::before creates a pseudo-element that is the first child of the selected element */
+input[type=checkbox]::before {
+    bottom: -6px;
+    content: "";
+    left: -6px;
+    position: absolute;
+    right: -6px;
+    top: -6px;
+}
+
+/* ::after creates a pseudo-element that is the last child of the selected element */
+input[type=checkbox],
+input[type=checkbox]::after {
+    transition: all 100ms ease-out;
+}
+
+input[type=checkbox]::after {
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 14px;
+    left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 14px;
+}
+
+input[type=checkbox]:hover {
+    background-color: #c9cbcd;
+    transition-duration: 0s;
+}
+
+input[type=checkbox]:checked {
+    background-color: #ff862f;
+}
+
+input[type=checkbox]:checked::after {
+    background-color: #fff;
+    left: 23px;
+}
+
+input[type=checkbox]:checked:hover {
+    background-color: #FF512F;
+}
+
+/************************************************* HEADER & FOOTER *************************************************/
 .logo {
     width: clamp(4rem, 25%, 8rem);
     float: left;
     margin-left: 1rem;
+}
+
+.logo:hover{
+    animation: flip-vertical-left 0.15s cubic-bezier(0.445, 0.050, 0.550, 0.950) 2;
 }
 
 .head-container {
@@ -167,8 +262,7 @@ img.small {
 .head-item a {
     color: #022A3E;
     font-family: "Raleway";
-    text-decoration: none;
-    /* text-transform: uppercase; */
+    text-transform: uppercase;
     font-size: clamp(0.7rem, 0.2rem + 2vw, 1.2rem);
 }
 
@@ -191,66 +285,123 @@ img.small {
     width: 100%;
 }
 
+.active{
+    color:#E77E3D!important;
+}
 
-/************************************************* MAIN *************************************************/
+footer {
+    margin-top: 10em;
+    background-color: lightgrey;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: x-small;
+}
 
-.grid {
+.bottom{
+    position: fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+}
+/************************************************* GRIDS *************************************************/
+
+.grid-minmax {
     display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     margin-bottom: 5em;
 }
 
-/* .grid-big{
-    display: 
-} */
 
 .box {
     text-align: center;
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
-.card {
-    background-color: #022A3E;
+/* learning: grid-template-colums was "repeat(auto-fit, minmax(450px, 1fr))" but this means that input field will always be minimum 450px*/
+.grid-input {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(347px, 1fr));
+}
+
+@media (min-width: 576px) {
+    .grid-input {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1em;
+    }
+}
+
+@media (min-width: 768px) {
+    .grid-input {
+        grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+        gap: 1em;
+    }
+}
+
+@media (min-width: 992px) {
+    .grid-input {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+}
+
+@media (min-width: 1200px) {
+    .grid-input {
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+}
+
+
+
+.grid-zodiac-planet{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: red solid;
+    align-items: baseline;
+}
+
+.grid-zodiac-planet img{
+    height: 7em;
+    margin: 0 2em;
+}
+
+.grid-zp-item{
+    border: green dotted;
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-between;
-    padding: 0 1.5rem;
-    gap: 1rem;
-    border-radius: 2rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    justify-content: center;
+    margin: 0 7em;
+    
 }
 
-/* @media (min-width: 576px){
-    .card{
-        
-    }
+.grid-zp-item:nth-of-type()  {
+    border: blue dotted;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 7em;
 }
-
-/* test */
-@media (min-width: 993px){
-    .card{
-
-    }
-} */
-
+/************************************************* FLEXBOXES *************************************************/
 
 .card-item {
-    height: 10rem;
-    margin: auto;
-    border: rgb(162, 0, 255) dotted 1px;
     text-align: center;
+    margin: auto;
 }
 
+
+@media (max-width: 575px) {
+    .card-item img {
+        width: 50%;
+    }
+}
 
 @media (min-width: 576px) {
     .card-item {
-        width: 20rem;
+        max-width: 15rem;
         margin: auto;
-        border: rgb(200, 30, 174) dotted 1px;
+        text-align: left;
     }
 }
 
@@ -258,8 +409,22 @@ img.small {
     .card-item {
         width: 13rem;
         margin: auto;
-        border: red dotted 1px;
     }
+}
+
+.card,
+.card p {
+    color: white;
+    font-weight: 300;
+    background-color: #022A3E;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 
@@ -319,4 +484,28 @@ td:nth-child(2) {
 
 td:nth-child(3) {
     text-align: right;
+}
+
+/************************************************* ANIMATION *************************************************/
+
+/* ----------------------------------------------
+ * Generated by Animista on 2023-2-7 15:54:31
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation flip-vertical-left
+ * ----------------------------------------
+ */
+@keyframes flip-vertical-left {
+    0% {
+        transform: rotateY(0);
+    }
+
+    100% {
+        transform: rotateY(-180deg);
+    }
 }
